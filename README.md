@@ -29,7 +29,7 @@ git clone https://github.com/asantra/ProjectGeant4.git
 3. Go inside the git repository and download the relevant tag:
 ```
 cd ProjectGeant4
-git checkout tags/CherenkovFinal -b CherenkovBranch
+git checkout tags/Cherenkov -b CherenkovBranch
 ```
 
 4. Make the repository using `cmake` (use the commands on the terminal one by one):
