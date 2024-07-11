@@ -14,7 +14,7 @@ The code setup depends explicitly on Geant4 classes.
 Before you compile the code, make sure that in your system, Geant4 is properly installed and sourced.
 The instructions on Geant4 download and installation can be found on this [Geant4 Doc Page](https://geant4.web.cern.ch/docs/getting-started).
 
-** For the BHU ISc Physics MSc final year nuclear physics lab PC, Geant4 is already installed. **
+**For the BHU ISc Physics MSc final year nuclear physics lab PC, Geant4 is already installed.**
 ## Download the Cherenkov Code setup from git
 1. Please first open a terminal. Then create a new repository and go inside that: 
 ```
@@ -49,23 +49,23 @@ cmake --build . -j8
  ```
  ./sim
  ```
-  - This should open a `QT` dialogue box. The experimental setup should be visible here. 
-  - Click on the green arrow button on the top panel. One click on this arrow will initiate one particle. The original particle (in blue) and Cherenkov light (in green) coming out of that should be clearly visible.
-  - You can click more on the green arrow to generate more events.
-  - The interactive setup is good for 5-10 events; if we want to generate events in bulk (say around 1000), then we need to use the batch mode of running. 
-  - Cross out the dialogue box (red cross button on the top corner, either left or right depending on your system)
-  - The output of the Cherenkov detection should be saved inside `output0.root` file. This file must be kept inside the `build` folder. 
+   - This should open a `QT` dialogue box. The experimental setup should be visible here. 
+   - Click on the green arrow button on the top panel. One click on this arrow will initiate one particle. The original particle (in blue) and Cherenkov light (in green) coming out of that should be clearly visible.
+   - You can click more on the green arrow to generate more events.
+   - The interactive setup is good for 5-10 events; if we want to generate events in bulk (say around 1000), then we need to use the batch mode of running. 
+   - Cross out the dialogue box (red cross button on the top corner, either left or right depending on your system)
+   - The output of the Cherenkov detection should be saved inside `output0.root` file. This file must be kept inside the `build` folder. 
  - For batch mode running,  please type the following command on the terminal inside the `build` directory: 
  ```
  ./sim run.mac
  ```
-  - This should initiate the batch mode of running, i.e. here you won't see any dialogue box.
-  - If you are using the original `run.mac` (i.e. didn't edit anything there), then you should see three output files stored inside `build` directory:
-    - output0.root for 0.5 GeV proton (100 events)
-    - output1.root for 1.0 GeV proton (100 events)
-    - output2.root for 5.0 GeV proton (100 events)
+   - This should initiate the batch mode of running, i.e. here you won't see any dialogue box.
+   - If you are using the original `run.mac` (i.e. didn't edit anything there), then you should see three output files stored inside `build` directory:
+   - output0.root for 0.5 GeV proton (100 events)
+   - output1.root for 1.0 GeV proton (100 events)
+   - output2.root for 5.0 GeV proton (100 events)
 
-  - We will learn to analyze the root files later.
+   - We will learn to analyze the root files later.
 
 # Change the particles and its parameters. 
 1. Emission of Cherenkov light depends on the particle velocity. The cone angle of Cherenkov light emission also depends on particle velocity.
