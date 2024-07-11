@@ -1,6 +1,9 @@
 /gun/momentumAmp 0.5 GeV
+/run/printProgress 10
 /run/beamOn 100
 /gun/momentumAmp 1.0 GeV
+/run/printProgress 10
 /run/beamOn 100
 /gun/momentumAmp 5.0 GeV
+/run/printProgress 10
 /run/beamOn 100

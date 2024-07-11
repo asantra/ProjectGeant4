@@ -75,16 +75,18 @@ cmake --build . -j8
 4. You will see lines:
 ```
 /gun/momentumAmp 0.5 GeV
+/run/printProgress 10
 /run/beamOn 100
 ```
-5. Here first line refers to the particle momentum of 0.5 GeV. The second line dictates how many particles we want to generate (here it is 100).
+5. Here first line refers to the particle momentum of 0.5 GeV. The second line dictates after how many events you want a print out. The third line tells you how many particles we want to generate (here it is 100).
 6. In the unedited `run.mac` file, there should be three sets of such commands: the first set corresponds to `output0.root`, the second corresponds to `output1.root` and so on. If there is a fourth set of commands appended to `run.mac`, the corresponding output file will be `output3.root`. 
 6. You can either change the values there, or you can append your lines to this file:
 ```
 /gun/momentumAmp 10 GeV
+/run/printProgress 20
 /run/beamOn 200
 ```
-7. This means we want to generate 10 GeV particle and the number of particles will be 200. 
+7. This means we want to generate 10 GeV particle and the number of particles will be 200, and the print progression is 20. 
 8. Now we have to use the following commands inside the `build` directory:
 ```
 cmake ..
