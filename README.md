@@ -45,7 +45,7 @@ cmake --build . -j8
 1. While inside the `build` directory, please look for the built object `sim`.
 
 2. You can run it interactively or in batch mode. 
-- For intereactive running, please type the following command on the terminal inside the `build` directory: 
+- ## For intereactive running, please type the following command on the terminal inside the `build` directory: 
  ```
  ./sim
  ```
@@ -55,7 +55,7 @@ cmake --build . -j8
    - The interactive setup is good for 5-10 events; if we want to generate events in bulk (say around 1000), then we need to use the batch mode of running. 
    - Cross out the dialogue box (red cross button on the top corner, either left or right depending on your system)
    - The output of the Cherenkov detection should be saved inside `output0.root` file. This file must be kept inside the `build` folder. 
-- For batch mode running,  please type the following command on the terminal inside the `build` directory: 
+- ## For batch mode running,  please type the following command on the terminal inside the `build` directory: 
  ```
  ./sim run.mac
  ```
