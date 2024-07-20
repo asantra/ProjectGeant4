@@ -94,10 +94,9 @@ cmake ..
 ```
 9. After the run, you should be able to find the output root files.
 10. Changing the particle type is a little bit involved. Please go to the top level directory of the repository (in this example `ProjectGeant4`).
-11. Go to the file `generator.cc` and look for these lines:
+11. Go to the file `generator.cc` and look for this line:
 ```
 G4String particleName = "proton";
-G4ParticleDefinition *particle = particleTable->FindParticle("proton");
 ```
 
 12. This means we used `proton` as our particle. We can change to any charged particles (please use these names, otherwise `Geant4` may not understand your request):
