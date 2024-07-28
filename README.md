@@ -142,7 +142,7 @@ G4String particleName = "proton";
 ```
 cd build
 cmake ..
-cmake --build . -j8
+cmake --build . -j6
 ```
 
 15. If the compilation is successful, you can run the project just like before:
