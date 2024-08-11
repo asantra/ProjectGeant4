@@ -23,7 +23,23 @@ cd ..
 ```
 (remember the space between `cd` and `..`)
 
-4. Edit a file: you can use your favourite code editor, like `vim`, `emacs` or `VSCode`. For simplicity, we will use `gedit` code editor. If you need to edit a file (say `run.mac`), then you can open the file (first you have to go to the folder where the file exists):
+4. Copy a file (say `check.txt`) to a folder named `Keep` (folder should already exist):
+```
+cp check.txt Keep/
+```
+There will be a copy of `check.txt` put inside the `Keep` folder. Original file will be kept as it is.
+
+5. Move a file (say `check.txt`) to a folder named `Keep` (folder should already exist):
+
+```
+mv check.txt Keep/
+```
+There will be `check.txt` put inside the `Keep` folder. Original file will **not** be kept.
+
+This `mv` command can be used to rename a file as well.
+That instruction will come later in this manual.
+
+6. Edit a file: you can use your favourite code editor, like `vim`, `emacs` or `VSCode`. For simplicity, we will use `gedit` code editor. If you need to edit a file (say `run.mac`), then you can open the file (first you have to go to the folder where the file exists):
 ``` 
 gedit run.mac&
 ```
@@ -38,15 +54,15 @@ The interactive window may look like the following:
 The `gedit` has many keyboard shortcuts similar to `MS Word`: for copying, use `ctrl+c` (meaning pressing `control` and `c` keys together); for pasting, use `ctrl+v`; for undo the recent edit, use `ctrl+z`.
 One can simply put the cursor on the specific line wanted on the `gedit` window, and then start editing the file.
 
-5. See the name of the folders or files in a particular location:
+7. See the name of the folders or files in a particular location:
 ```
 ls
 ```
 this will list all the files/folders on the terminal at the location where you are standing.
 
-6. To delete something in the terminal: to delete a file (say `myFile.txt`), simply type `rm myFile.txt` and hit enter; to delete a folder (say `Temp`) type `rm -rf Temp` and hit enter.
+8. To delete something in the terminal: to delete a file (say `myFile.txt`), simply type `rm myFile.txt` and hit enter; to delete a folder (say `Temp`) type `rm -rf Temp` and hit enter.
 
-7. If you need to copy something from the terminal **on Ubuntu**, use `ctrl+shift+c` (meaning pressing the `control`, `shift` and the `c` keys together). For pasting on the terminal, use `ctrl+shift+v` (note the difference from the `gedit` commands). 
+9. If you need to copy something from the terminal **on Ubuntu**, use `ctrl+shift+c` (meaning pressing the `control`, `shift` and the `c` keys together). For pasting on the terminal, use `ctrl+shift+v` (note the difference from the `gedit` commands). 
 
 
 # Installation of the code setup
@@ -181,6 +197,7 @@ mv output0.root output_electron_0p5GeV.root
 mv output1.root output_electron_1p0GeV.root
 ...
 ```
+ 
 
 20. If you want to save the root files from proton in a separate folder (say `ProtonFiles` inside the `ProjectGeant4` repository) outside of `build` directory, then use the commands inside the `build` directory:
 ```
@@ -194,6 +211,11 @@ mkdir ../ElectronFiles
 mv output_electron_*root ../ElectronFiles
 ```
 
+
+** You can use `renameRootFiles.py` code from the [CherenkovPhotonAnalyzer](https://github.com/asantra/CherenkovPhotonAnalyzer) repository to automatically rename your root files and store them away from the `build` directory. **
+
+To be able to use that, first you need to follow the instructions on `CherenkovPhotonAnalyzer` repository.
+Then please copy `renameRootFiles.py` from `CherenkovPhotonAnalyzer` and put that in `MyProject/ProjectGeant4` folder.
 
 
 # The simulation of the experiment
