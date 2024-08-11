@@ -9,13 +9,20 @@ The code setup is based exactly on this video series (upto Tutorial 9).
 *(This is a long video series. You can save the details for future.)*
 
 # Useful commands for a Linux Terminal
-This section highlights a few useful linux commands that may be used during this simulation project. 
+This section highlights a few useful linux commands that may be used during this simulation project. Ignore it if you are well-versed with the terminal usage.
 1. Open a terminal window: if you are on Ubuntu, look for `terminal` app on the Ubuntu left side panel. Then click on it - this will open the terminal window which will be your main work area (don't forget to hit the `enter` button after typing out each command).
 
 2. Go inside a directory: suppose you want to go inside the directory `Temp`. Then you have to do
 ```
 cd Temp
 ```
+Here it is assumed that the `Temp` folder already exists.
+
+If you need to create a folder (say `Test`), then:
+```
+mkdir -p Test
+```
+
 
 3. Come out of a directory: suppose you need to come out of the directory `Temp`. Then you have to do (if you are already inside the directory `Temp`):
 ```
@@ -28,6 +35,12 @@ cd ..
 cp check.txt Keep/
 ```
 There will be a copy of `check.txt` put inside the `Keep` folder. Original file will be kept as it is.
+
+If you want to copy a file to the directory where you are standing (assuming `check.txt` is outside of the directory you are standing):
+```
+cp ../check.txt .
+```
+The trailing `.` is necessary: it means copy it `here`. 
 
 5. Move a file (say `check.txt`) to a folder named `Keep` (folder should already exist):
 
@@ -199,16 +212,16 @@ mv output1.root output_electron_1p0GeV.root
 ```
  
 
-20. If you want to save the root files from proton in a separate folder (say `ProtonFiles` inside the `ProjectGeant4` repository) outside of `build` directory, then use the commands inside the `build` directory:
+20. If you want to save the root files from proton in a separate folder (say `proton` inside the `ProjectGeant4` repository) outside of `build` directory, then use the commands inside the `build` directory:
 ```
-mkdir ../ProtonFiles
-mv output_proton_*root ../ProtonFiles
+mkdir ../proton
+mv output_proton_*root ../proton
 ```
 
 Similarly, if you want to keep electron files away from the `build` directory then use the following commands from the `build` directory:
 ```
-mkdir ../ElectronFiles
-mv output_electron_*root ../ElectronFiles
+mkdir ../electron
+mv output_electron_*root ../electron
 ```
 
 
@@ -234,13 +247,14 @@ These skills will be necessary to carry out this simulation exercise.
 
 > 0.1, 0.2, 0.5, 0.8, 1.0, 1.2, 1.5, 1.8, 2.0, 2.2, 2.5, 3.0, 3.5, 5.0, 6.0, 8.0, 10.0, 12.0, 15.0, 18.0, 21.0, 25.0, 30.0, 35.0, 40.0, 50.0, 60.0, 70.0, 80.0, 100.0.  
 
+If you are using these momenta, then `output0.root` will correspond to `0.1 GeV`, `output1.root` will correspond to `0.2 GeV` and so on.
 2. You can append the `run.mac` file with the new momenta values. There is a file with all the above momenta added: `run_moremomenta.mac` - you can simply run that file.
 3. Save the root file names accordingly and store them away from the `build` directory.
 4. Now we will do the same exercise (use the same momenta values) for these particles:
-> alpha, e-, mu-, pi-, tau-.
+> alpha, e-, mu-, tau-, pi-, kaon-.
 
-If time permits, you can use two more mesons:
-> kaon-, B-.
+If time permits, you can use these mesons as well:
+> B-, D-, sigma-, omega-.
 5. After each particle's run, store the output root files in separate folder away from `build` directory. These root files will be necessary to find the correlation between the particle type and the Cherenkov angle.
 6. If you have done all the steps from 1 to 5 above, then your `data taking` part (actually `simulation` in this context) is complete. Now we will learn how to analyze the `data` and get the physics result.  
 7. Here is a sample plot from HERA-B RICH detector (_the Cherenkov medium is different, so we may not get exactly the same plot_) which shows the correlation between the particle type and the Cherenkov angle. This is reproduced from Grupen & Shwartz, ``Particle Detectors":
