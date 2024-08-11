@@ -83,8 +83,10 @@ cmake --build . -j6
  ```
  ./sim
  ```
-   - This should open a `QT` dialogue box. The experimental setup should be visible here. 
+   - This should open a `QT` dialogue box. The experimental setup should be visible here. Example diagram is below:
+   ![screenshot](SampleImages/CherenkovInitial.png)
    - Click on the green arrow button on the top panel. One click on this arrow will initiate one particle. The original particle (in blue) and Cherenkov light (in green) coming out of that should be clearly visible.
+   ![screenshot](SampleImages/CherenkovOneEvent.png)
    - You can click more on the green arrow to generate more events.
    - The interactive setup is good for 5-10 events; if we want to generate events in bulk (say around 1000), then we need to use the batch mode of running (simply because we cannot hit the green button 1000 times in a short time). 
    - Cross out the dialogue box (cross button on the top corner, either left or right depending on your system)
@@ -105,54 +107,57 @@ cmake --build . -j6
 
 # Change the particles and its parameters. 
 1. Emission of Cherenkov light depends on the particle velocity. The cone angle of Cherenkov light emission also depends on particle velocity.
-2. If we use different particle type and particle energy, then the detected Cherenkov light should be different too. This is why many particle physics experiments use the Cherenkov detectors to identify the particle. 
-3. To change the momentum of the particle, please go inside the `run.mac` file in the top level directory of the repository (in this example: `ProjectGeant4`).
-4. You will see lines:
+2. There is a threshold velocity after which Cherenkov light
+3. If we use different particle type and particle energy, then the detected Cherenkov light should be different too. This is why many particle physics experiments use the Cherenkov detectors to identify the particle. 
+4. To change the momentum of the particle, please go inside the `run.mac` file in the top level directory of the repository (in this example: `ProjectGeant4`).
+5. You will see lines:
 ```
 /gun/momentumAmp 0.5 GeV
 /run/printProgress 10
 /run/beamOn 100
 ```
-5. Here first line refers to the particle momentum of 0.5 GeV. The second line dictates after how many events you want a print out. The third line tells you how many particles we want to generate (here it is 100).
-6. In the unedited `run.mac` file, there should be three sets of such commands: the first set corresponds to `output0.root`, the second corresponds to `output1.root` and so on. If there is a fourth set of commands appended to `run.mac`, the corresponding output file will be `output3.root`. 
-6. You can either change the values there, or you can append your lines to this file:
+6. Here first line refers to the particle momentum of 0.5 GeV. The second line dictates after how many events you want a print out (here it is 10). The third line tells you how many particles we want to generate (here it is 100).
+7. In the unedited `run.mac` file, there should be three sets of such commands: the first set corresponds to `output0.root`, the second corresponds to `output1.root` and so on. If there is a fourth set of commands appended to `run.mac`, the corresponding output file will be `output3.root`. If you see that your output files start from `output1.root` (and not `output0.root`), that means Cherenkov light was not generated for the first momentum in the `run.mac` file (here `0.5 GeV`).  
+8. You can either change the values in the initial nine lines of `run.mac`, or you can append your lines to this file:
 ```
 /gun/momentumAmp 10 GeV
 /run/printProgress 20
 /run/beamOn 200
 ```
-7. This means we want to generate 10 GeV particle and the number of particles will be 200, and the print progression is 20 (i.e. `Geant4` will print the progress of the run in every 20 events). 
-8. Now we have to use the following commands inside the `build` directory:
+9. This means we want to generate 10 GeV particle and the number of particles will be 200, and the print progression is 20 (i.e. `Geant4` will print the progress of the run in every 20 events). 
+10. Now we have to use the following commands inside the `build` directory:
 ```
 cmake ..
 ./sim run.mac
 ```
-9. After the run, you should be able to find the output root files.
-10. Changing the particle type is a little bit involved. Please go to the top level directory of the repository (in this example `ProjectGeant4`). If you are in the `build` directory then use `cd ..` to reach to the `ProjectGeant4`.
-11. Go to the file `generator.cc` and look for this line:
+(rememeber, everytime you change anything to your `run.mac`, you need to run the above commands)
+11. After the run, you should be able to find the output root files.
+12. Changing the particle type is a little bit involved. Please go to the top level directory of the repository (in this example `ProjectGeant4`). If you are in the `build` directory then use `cd ..` to reach to the `ProjectGeant4`.
+13. Go to the file `generator.cc` and look for this line:
 ```
 G4String particleName = "proton";
 ```
 
-12. This means we used `proton` as our particle. We can change to any charged particles (please use these names, otherwise `Geant4` may not understand your request):
+14. This means we used `proton` as our particle. We can change to any charged particles (please use these names, otherwise `Geant4` may not understand your request):
 > alpha, anti_proton, e+, e-, mu+, mu-, pi+, pi-, proton, tau+, tau-.
 
-13. Please change to your desired particle name in the lines mentioned in step 11 above. Save the file `generator.cc`.
-14. Now go to the `build` directory and compile the project again:
+15. Please change to your desired particle name in the lines mentioned in step 11 above. Save the file `generator.cc`.
+16. Now go to the `build` directory and compile the project again:
 ```
 cd build
 cmake ..
 cmake --build . -j6
 ```
+(rememeber, everytime you change anything to the files in `ProjectGeant4`, you need to run the above commands)
 
-15. If the compilation is successful, you can run the project just like before:
+17. If the compilation is successful, you can run the project just like before:
 ```
 ./sim run.mac
 ```
 
-16. Remember one thing, _everytime you run the setup, the previous output root files are overwritten. If you need to keep the output files from the previous runs, please store the root files away from the `build` directory_. 
+18. Remember one thing, _everytime you run the setup, the previous output root files are overwritten. If you need to keep the output files from the previous runs, please store the root files away from the `build` directory_. 
 
-17. It is a good practice to rename the output root files according to the particle type and energy. You can rename the root files in the following way inside the `build` directory:
+19. It is a good practice to rename the output root files according to the particle type and energy. You can rename the root files in the following way inside the `build` directory:
 ```
 mv output0.root output_proton_0p5GeV.root
 mv output1.root output_proton_1p0GeV.root
@@ -165,7 +170,7 @@ mv output1.root output_electron_1p0GeV.root
 ...
 ```
 
-18. If you want to save the root files from proton in a separate folder (say `ProtonFiles` inside the `ProjectGeant4` repository) outside of `build` directory, then use the commands inside the `build` directory:
+20. If you want to save the root files from proton in a separate folder (say `ProtonFiles` inside the `ProjectGeant4` repository) outside of `build` directory, then use the commands inside the `build` directory:
 ```
 mkdir ../ProtonFiles
 mv output_proton_*root ../ProtonFiles
@@ -177,3 +182,32 @@ mkdir ../ElectronFiles
 mv output_electron_*root ../ElectronFiles
 ```
 
+
+
+# The simulation of the experiment
+If you have followed all the instructios properly until now, then you should be able to:
+1. run the setup in batch mode,
+2. change the number of particles generated,
+3. change the particle type and momentum,
+4. rename the root files according to the particle type and momenta,
+5. keep away the root files in a separate folder outside of `build`.
+
+These skills will be necessary to carry out this simulation exercise.
+
+## run for different particle momentum
+
+1. First we will run for `proton` particles with `30` different momenta (units in `GeV`) and for `500` events each: 
+
+> 0.1, 0.2, 0.5, 0.8, 1.0, 1.2, 1.5, 1.8, 2.0, 2.2, 2.5, 3.0, 3.5, 5.0, 6.0, 8.0, 10.0, 12.0, 15.0, 18.0, 21.0, 25.0, 30.0, 35.0, 40.0, 50.0, 60.0, 70.0, 80.0, 100.0.  
+
+2. You can append the `run.mac` file with the new momenta values
+3. Save the root file names accordingly and store them away from the `build` directory.
+4. Now we will do the same exercise (use the same momenta values) for these particles:
+> alpha, e-, mu-, pi-, tau-.
+5. After each particle's run, store the output root files in separate folder away from `build` directory. These root files will be necessary to find the correlation between the particle type and the Cherenkov angle.
+6. If you have done all the steps from 1 to 5 above, then your `data taking` part (actually `simulation` in this context) is complete. Now we will learn how to analyze the `data` and get the physics result.  
+7. Here is a sample plot from HERA-B RICH detector. This is reproduced from Grupen & Shwartz, ``Particle Detectors":
+
+![screenshot](SampleImages/HERA-B-RichDetector.png)
+
+8. After all the simulations are done, we will try to plot the Cherenkov angle as a function of the particle momentum and try to find any correlation between those plots with the particle type.

@@ -1,0 +1,91 @@
+/gun/momentumAmp 0.1 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 0.2 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 0.5 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 0.8 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 1.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 1.2 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 1.5 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 1.8 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 2.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 2.2 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 2.5 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 3.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 3.5 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 5.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 6.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 8.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 10.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 12.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 15.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 18.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 21.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 25.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 30.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 35.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 40.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 50.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 60.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 70.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 80.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+/gun/momentumAmp 100.0 GeV
+/run/printProgress 10
+/run/beamOn 500
+
