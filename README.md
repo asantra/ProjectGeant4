@@ -227,7 +227,7 @@ If time permits, you can use two more mesons:
 
 8. After all the simulations are done, we will try to plot the Cherenkov angle as a function of the particle momentum and try to find any correlation between those plots with the particle type.
 
-9. After **finishing** all of your simulation and analyses, you should delete the `MyProject` directory. But remember, once deleted, you will not be able to retrieve your files inside the `MyProject` directory. So delete this only if all of your works are done. 
+9. After **finishing** all of your simulation and analyses, you should delete the `MyProject` directory. But remember, once deleted, you will not be able to retrieve your files inside the `MyProject` directory. So delete this only if all of your works (simulation+analysis+plotting) are done. 
 
 10. If you are inside the `MyProject/ProjectGeant4/build` directory, then follow the commands:
 ```
