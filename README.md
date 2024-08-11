@@ -30,17 +30,24 @@ gedit run.mac&
 the trailing `&` is necessary to detach the terminal from `gedit`. 
 After editing the file, you need to save the file by just pressing `control` and `s` keys together (`ctrl+s`) from the keyboard.
 
-The `gedit` has many keyboard shortcuts similar to `MS Word`: for copying, use `ctrl+c` (meaning pressing `control` and `c` keys together); for pasting, use `ctrl+v`; for undo the recent edit, use `ctrl+z`
+The interactive window may look like the following:
+
+![alt text](SampleImages/SampleGedit.png)
+
+
+The `gedit` has many keyboard shortcuts similar to `MS Word`: for copying, use `ctrl+c` (meaning pressing `control` and `c` keys together); for pasting, use `ctrl+v`; for undo the recent edit, use `ctrl+z`.
+One can simply put the cursor on the specific line wanted on the `gedit` window, and then start editing the file.
 
 5. See the name of the folders or files in a particular location:
 ```
 ls
 ```
-this will list all the files/folders on the terminal.
+this will list all the files/folders on the terminal at the location where you are standing.
 
 6. To delete something in the terminal: to delete a file (say `myFile.txt`), simply type `rm myFile.txt` and hit enter; to delete a folder (say `Temp`) type `rm -rf Temp` and hit enter.
 
-7. If you need to copy something from the terminal, use `ctrl+shift+c` (meaning pressing the `control`, `shift` and the `c` keys together). For pasting on the terminal, use `ctrl+shift+v` (note the difference from the `gedit` commands). 
+7. If you need to copy something from the terminal **on Ubuntu**, use `ctrl+shift+c` (meaning pressing the `control`, `shift` and the `c` keys together). For pasting on the terminal, use `ctrl+shift+v` (note the difference from the `gedit` commands). 
+
 
 # Installation of the code setup
 The code setup depends explicitly on Geant4 classes.
@@ -87,9 +94,14 @@ cmake --build . -j6
    ![screenshot](SampleImages/CherenkovInitial.png)
    - Click on the green arrow button on the top panel. One click on this arrow will initiate one particle. The original particle (in blue) and Cherenkov light (in green) coming out of that should be clearly visible.
    ![screenshot](SampleImages/CherenkovOneEvent.png)
+   - Here the Cherenkov medium is Silica gel (defined inside `construction.cc` file).
+   - The detector surface is a dummy detector for simplicity (i.e. not real - because in reality we have to connect the detector to the photomultiplier tube and the detector electronics). If you zoom in on the detector surface, you will see 100 boxes in the `x` direction and 100 boxes in the `y` direction - 
+   ![screenshot](SampleImages/DetectorZoomed.png)
+
+   Each box has the length of 5 mm in `x` direction and 5 mm in `y` direction. The box is 10 mm thick (defined in `construction.cc`). 
    - You can click more on the green arrow to generate more events.
    - The interactive setup is good for 5-10 events; if we want to generate events in bulk (say around 1000), then we need to use the batch mode of running (simply because we cannot hit the green button 1000 times in a short time). 
-   - Cross out the dialogue box (cross button on the top corner, either left or right depending on your system)
+   - Cross out the dialogue box (cross button on the top corner, either left or right depending on your operating system)
    - The output of the Cherenkov detection should be saved inside `output0.root` file. This file must be kept inside the `build` folder. 
    - This root file keeps only a few events: not very useful for us. You can delete the root files generated here by using the command: `rm output*.root`
 
@@ -107,7 +119,7 @@ cmake --build . -j6
 
 # Change the particles and its parameters. 
 1. Emission of Cherenkov light depends on the particle velocity. The cone angle of Cherenkov light emission also depends on particle velocity.
-2. There is a threshold velocity after which Cherenkov light
+2. There is a threshold velocity after which Cherenkov light is emitted: if the particle does not cross that threshold, then there is no Cherenkov light. The threshold depends on particle type and the Cherenkov medium. In this project, we are using _Silica gel as the Cherenkov medium_.
 3. If we use different particle type and particle energy, then the detected Cherenkov light should be different too. This is why many particle physics experiments use the Cherenkov detectors to identify the particle. 
 4. To change the momentum of the particle, please go inside the `run.mac` file in the top level directory of the repository (in this example: `ProjectGeant4`).
 5. You will see lines:
@@ -117,7 +129,7 @@ cmake --build . -j6
 /run/beamOn 100
 ```
 6. Here first line refers to the particle momentum of 0.5 GeV. The second line dictates after how many events you want a print out (here it is 10). The third line tells you how many particles we want to generate (here it is 100).
-7. In the unedited `run.mac` file, there should be three sets of such commands: the first set corresponds to `output0.root`, the second corresponds to `output1.root` and so on. If there is a fourth set of commands appended to `run.mac`, the corresponding output file will be `output3.root`. If you see that your output files start from `output1.root` (and not `output0.root`), that means Cherenkov light was not generated for the first momentum in the `run.mac` file (here `0.5 GeV`).  
+7. In the unedited `run.mac` file, there should be three sets of such commands: the first set corresponds to `output0.root`, the second corresponds to `output1.root` and so on. If there is a fourth set of commands appended to `run.mac`, the corresponding output file will be `output3.root`. If you see that your output files start from `output1.root` (and not `output0.root`), that means Cherenkov light was not generated for the first momentum in the `run.mac` file (here `0.5 GeV`). That momentum was below the Cherenkov threshold, hence no Cherenkov light.  
 8. You can either change the values in the initial nine lines of `run.mac`, or you can append your lines to this file:
 ```
 /gun/momentumAmp 10 GeV
@@ -139,7 +151,7 @@ G4String particleName = "proton";
 ```
 
 14. This means we used `proton` as our particle. We can change to any charged particles (please use these names, otherwise `Geant4` may not understand your request):
-> alpha, anti_proton, e+, e-, mu+, mu-, pi+, pi-, proton, tau+, tau-.
+> alpha, anti_proton, e+, e-, mu+, mu-, pi+, pi-, proton, tau+, tau-, kaon+, kaon-, B+,B-.
 
 15. Please change to your desired particle name in the lines mentioned in step 11 above. Save the file `generator.cc`.
 16. Now go to the `build` directory and compile the project again:
@@ -148,7 +160,7 @@ cd build
 cmake ..
 cmake --build . -j6
 ```
-(rememeber, everytime you change anything to the files in `ProjectGeant4`, you need to run the above commands)
+(rememeber, everytime you change anything to the files in `ProjectGeant4`, you need to run the above commands. _If you don't compile after making changes, then in your simulation run, the previous changes won't be considered_.)
 
 17. If the compilation is successful, you can run the project just like before:
 ```
@@ -200,14 +212,24 @@ These skills will be necessary to carry out this simulation exercise.
 
 > 0.1, 0.2, 0.5, 0.8, 1.0, 1.2, 1.5, 1.8, 2.0, 2.2, 2.5, 3.0, 3.5, 5.0, 6.0, 8.0, 10.0, 12.0, 15.0, 18.0, 21.0, 25.0, 30.0, 35.0, 40.0, 50.0, 60.0, 70.0, 80.0, 100.0.  
 
-2. You can append the `run.mac` file with the new momenta values
+2. You can append the `run.mac` file with the new momenta values. There is a file with all the above momenta added: `run_moremomenta.mac` - you can simply run that file.
 3. Save the root file names accordingly and store them away from the `build` directory.
 4. Now we will do the same exercise (use the same momenta values) for these particles:
 > alpha, e-, mu-, pi-, tau-.
+If time permits, you can use two more mesons:
+> kaon-, B-.
 5. After each particle's run, store the output root files in separate folder away from `build` directory. These root files will be necessary to find the correlation between the particle type and the Cherenkov angle.
 6. If you have done all the steps from 1 to 5 above, then your `data taking` part (actually `simulation` in this context) is complete. Now we will learn how to analyze the `data` and get the physics result.  
-7. Here is a sample plot from HERA-B RICH detector. This is reproduced from Grupen & Shwartz, ``Particle Detectors":
+7. Here is a sample plot from HERA-B RICH detector (_the Cherenkov medium is different, so we may not get exactly the same plot_) which shows the correlation between the particle type and the Cherenkov angle. This is reproduced from Grupen & Shwartz, ``Particle Detectors":
 
 ![screenshot](SampleImages/HERA-B-RichDetector.png)
 
 8. After all the simulations are done, we will try to plot the Cherenkov angle as a function of the particle momentum and try to find any correlation between those plots with the particle type.
+
+9. After **finishing** all of your simulation and analyses, you should delete the `MyProject` directory. But remember, once deleted, you will not be able to retrieve your files inside the `MyProject` direcotry. So delete this only if all of your works are done. 
+
+10. If you are inside the `MyProject/ProjectGeant4/build` directory, then follow the commands:
+```
+cd ../../..
+rm -rf MyProject
+```
