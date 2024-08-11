@@ -225,8 +225,23 @@ mv output_electron_*root ../electron
 ```
 
 
-** You can use `renameRootFiles.py` code to automatically rename your root files and store them away from the `build` directory. **
-Please see the instructions from this repository: [CherenkovPhotonAnalyzer](https://github.com/asantra/CherenkovPhotonAnalyzer)
+**You can use `renameRootFiles.py` code to automatically rename your root files and store them away from the `build` directory.**
+Run the code from outside of `build` directory.
+Assuming you are inside the `build` directory and you are running on `proton`, please use:
+```
+cd ..
+python3 renameRootFiles.py proton
+```
+
+The code will tell you the original file name and the renamed file name.
+The renamed files will be kept inside the `proton` folder.
+
+Similarly after the run of `e-`, you can use this code (asuming you are in the `build` directory):
+```
+cd ..
+python3 renameRootFiles.py electron
+```
+
 
 
 
@@ -247,8 +262,12 @@ These skills will be necessary to carry out this simulation exercise.
 > 0.1, 0.2, 0.5, 0.8, 1.0, 1.2, 1.5, 1.8, 2.0, 2.2, 2.5, 3.0, 3.5, 5.0, 6.0, 8.0, 10.0, 12.0, 15.0, 18.0, 21.0, 25.0, 30.0, 35.0, 40.0, 50.0, 60.0, 70.0, 80.0, 100.0.  
 
 If you are using these momenta, then `output0.root` will correspond to `0.1 GeV`, `output1.root` will correspond to `0.2 GeV` and so on.
-2. You can append the `run.mac` file with the new momenta values. There is a file with all the above momenta added: `run_moremomenta.mac` - you can simply run that file.
-3. Save the root file names accordingly and store them away from the `build` directory.
+2. You can append the `run.mac` file with the new momenta values. There is a file with all the above momenta added: `run_moremomenta.mac` - you can simply run that file:
+```
+./sim run_moremomenta.mac
+```
+
+3. Save the root file names accordingly and store them away from the `build` directory (use `renameRootFiles.py`).
 4. Now we will do the same exercise (use the same momenta values) for these particles:
 > alpha, e-, mu-, tau-, pi-, kaon-.
 
@@ -264,7 +283,6 @@ If time permits, you can use these mesons as well:
 
 
 # Analysis of the root files
-1. Renaming the root files
 
 
 # Removing the entire repository after the simulation and analysis
