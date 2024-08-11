@@ -225,10 +225,9 @@ mv output_electron_*root ../electron
 ```
 
 
-** You can use `renameRootFiles.py` code from the [CherenkovPhotonAnalyzer](https://github.com/asantra/CherenkovPhotonAnalyzer) repository to automatically rename your root files and store them away from the `build` directory. **
+** You can use `renameRootFiles.py` code to automatically rename your root files and store them away from the `build` directory. **
+Please see the instructions from this repository: [CherenkovPhotonAnalyzer](https://github.com/asantra/CherenkovPhotonAnalyzer)
 
-To be able to use that, first you need to follow the instructions on `CherenkovPhotonAnalyzer` repository.
-Then please copy `renameRootFiles.py` from `CherenkovPhotonAnalyzer` and put that in `MyProject/ProjectGeant4` folder.
 
 
 # The simulation of the experiment
@@ -263,9 +262,15 @@ If time permits, you can use these mesons as well:
 
 8. After all the simulations are done, we will try to plot the Cherenkov angle as a function of the particle momentum and try to find any correlation between those plots with the particle type.
 
-9. After **finishing** all of your simulation and analyses, you should delete the `MyProject` directory. But remember, once deleted, you will not be able to retrieve your files inside the `MyProject` directory. So delete this only if all of your works (simulation+analysis+plotting) are done. 
 
-10. If you are inside the `MyProject/ProjectGeant4/build` directory, then follow the commands:
+# Analysis of the root files
+1. Renaming the root files
+
+
+# Removing the entire repository after the simulation and analysis
+1. After **finishing** all of your simulation and analyses, you should delete the `MyProject` directory. But remember, once deleted, you will not be able to retrieve your files inside the `MyProject` directory. So delete this only if all of your works (simulation+analysis+plotting) are done. 
+
+2. If you are inside the `MyProject/ProjectGeant4/build` directory, then follow the commands:
 ```
 cd ../../..
 rm -rf MyProject
