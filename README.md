@@ -180,7 +180,7 @@ G4String particleName = "proton";
 ```
 
 14. This means we used `proton` as our particle. We can change to any charged particles (please use these names, otherwise `Geant4` may not understand your request):
-> alpha, anti_proton, e+, e-, mu+, mu-, pi+, pi-, proton, tau+, tau-, kaon+, kaon-, B+,B-.
+> alpha, anti_proton, e+, e-, mu+, mu-, pi+, pi-, proton, tau+, tau-, kaon+, kaon-, B+,B-, D+, D-, omega+, omega-, sigma+, sigma-.
 
 15. Please change to your desired particle name in the lines mentioned in step 11 above. Save the file `generator.cc`.
 16. Now go to the `build` directory and compile the project again:
@@ -271,7 +271,7 @@ If you are using these momenta, then `output0.root` will correspond to `0.1 GeV`
 4. Now we will do the same exercise (use the same momenta values) for these particles:
 > alpha, e-, mu-, tau-, pi-, kaon-.
 
-If time permits, you can use these mesons as well:
+If time permits, you can use these particles as well:
 > B-, D-, sigma-, omega-.
 5. After each particle's run, store the output root files in separate folder away from `build` directory. These root files will be necessary to find the correlation between the particle type and the Cherenkov angle.
 6. If you have done all the steps from 1 to 5 above, then your `data taking` part (actually `simulation` in this context) is complete. Now we will learn how to analyze the `data` and get the physics result.  
