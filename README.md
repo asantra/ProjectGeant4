@@ -226,12 +226,14 @@ mv output_electron_*root ../electron
 
 
 **You can use `renameRootFiles.py` code to automatically rename your root files and store them away from the `build` directory.**
-Run the code from outside of `build` directory.
+The code is located inside `ProjectGeant4/AnalyzerScripts`.
+Run the code from thtat location.
 Assuming you are inside the `build` directory and you are running on `proton`, please use:
 ```
-cd ..
+cd ../AnalyzerScripts
 python3 renameRootFiles.py proton
 ```
+(If you are elsewhere, please use a combination of `cd` and `cd ..` command to go to the `AnalyzerScripts` directory and then run `python3 renameRootFiles.py proton`.)
 
 The code will tell you the original file name and the renamed file name.
 The renamed files will be kept inside the `proton` folder.
@@ -283,6 +285,9 @@ If time permits, you can use these particles as well:
 
 
 # Analysis of the root files
+1. Once all the simulations are done (for all particles, all momenta, and renaming root files accordingly), we are ready for the analysis. 
+2. We want to plot the Cherenkov angle $`\theta_c`$ as a function of the particle momenta (see the HEAR-B plot above).
+3. 
 
 
 # Removing the entire repository after the simulation and analysis
