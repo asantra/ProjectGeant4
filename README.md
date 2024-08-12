@@ -300,6 +300,70 @@ If time permits, you can use these particles as well:
 
 6. Now we know `d`, as this is in our simulation setup. For our simulation, `d` is 24 cm.
 7. We are now left with finding the value of `r`. This is the time we will analyze the root files.
+8. Now let's go inside one of the root files. Assuming you are in the `build` directory, and you want to go to the `proton` directory:
+```
+cd ../proton
+```
+9. Now do an `ls` to see all the files that are kept there:
+```
+output_proton_0p2GeV.root
+output_proton_0p5GeV.root
+output_proton_0p8GeV.root
+output_proton_1p0GeV.root
+output_proton_1p2GeV.root
+output_proton_1p5GeV.root
+output_proton_1p8GeV.root
+output_proton_2p0GeV.root
+output_proton_2p2GeV.root
+output_proton_2p5GeV.root
+output_proton_3p0GeV.root
+output_proton_3p5GeV.root
+output_proton_5p0GeV.root
+output_proton_6p0GeV.root
+output_proton_8p0GeV.root
+output_proton_10p0GeV.root
+output_proton_12p0GeV.root
+output_proton_15p0GeV.root
+output_proton_18p0GeV.root
+output_proton_21p0GeV.root
+output_proton_25p0GeV.root
+output_proton_30p0GeV.root
+output_proton_35p0GeV.root
+output_proton_40p0GeV.root
+output_proton_50p0GeV.root
+output_proton_60p0GeV.root
+output_proton_70p0GeV.root
+output_proton_80p0GeV.root
+output_proton_100p0GeV.root
+```
+
+Each root file corresponds to one particular momentum of proton.
+
+10. Now we will go inside one root file, say `output_proton_12p0GeV.root` and draw a two dimensional plot of the hits on the detector surface:
+```
+root -l --web=off output_proton_12p0GeV.root
+Hits->Draw("fY:fX","fZ>0","COLZ")
+```
+
+This will take you inside the `root` prompt (not the ordinary terminal). 
+If you want to go out of the `root` prompt, please type:
+```
+.q
+```
+and hit enter.
+Then you will go out of the `root` prompt, and come back to your ordinary terminal window.
+
+11. You should see a dialogue box like the following:
+![screenshot](SampleImages/RootTBrowser.png)
+
+12. This is a two dimensional plot showing the hits on the detector surface. The `x` axis shows the `x` direction and the `y` axis shows the `y` direction. The colors signify the number of hits in each of the detector box. 
+13. At first look, you may think the Cherenkov circle is lost on the detector surface: but look carefully on the color axis. 
+The yellow region has more than 14000 hits, where as the blue region is around 1000 hits (less than 7% of the highest hits). 
+Hence the signal will be considered from the yellow region, and the bliue region will be considered as a noise. 
+The yellow hits are in a circle.
+14. The next part is to fit a circle on the yellow hits to get the Cherenkov radius `r`.
+![screenshot](SampleImages/RootCircle.png)
+Remember, here `r` will come out in the unit of detector box size (which is `0.5 cm X 0.5 cm` in the `x-y` plane).
 
 # Removing the entire repository after the simulation and analysis
 1. After **finishing** all of your simulation and analyses, you should delete the `MyProject` directory. But remember, once deleted, you will not be able to retrieve your files inside the `MyProject` directory. So delete this only if all of your works (simulation+analysis+plotting) are done. 
