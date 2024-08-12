@@ -287,8 +287,19 @@ If time permits, you can use these particles as well:
 # Analysis of the root files
 1. Once all the simulations are done (for all particles, all momenta, and renaming root files accordingly), we are ready for the analysis. 
 2. We want to plot the Cherenkov angle $`\theta_c`$ as a function of the particle momenta (see the HEAR-B plot above).
-3. 
+3. Now let's look at the simulation display again. The primary particle is shown in blue and the Cherenkov light is shown in green. The Cherenkov light creates a cone. 
+![screenshot](SampleImages/CherenkovCone.png)
 
+4. This cone ultimately creates a circle of hits in our simple detector.
+![screenshot](SampleImages/CherenkovCircle.png)
+
+5. Please see the detailed diagram below. Here the `d` is the distance between our Cherenkov medium and the Cherenkov detector. We need to find the value of `r`. Once we know `d` and `r`, we will easily find the $`\theta_c`$ using
+```math
+\theta_c = \tan^{-1}\frac{r}{d}
+```
+
+6. Now we know `d`, as this is in our simulation setup. For our simulation, `d` is 24 cm.
+7. We are now left with finding the value of `r`. This is the time we will analyze the root files.
 
 # Removing the entire repository after the simulation and analysis
 1. After **finishing** all of your simulation and analyses, you should delete the `MyProject` directory. But remember, once deleted, you will not be able to retrieve your files inside the `MyProject` directory. So delete this only if all of your works (simulation+analysis+plotting) are done. 
