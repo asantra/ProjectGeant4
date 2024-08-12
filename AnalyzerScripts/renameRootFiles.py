@@ -1,8 +1,13 @@
+###########################################################################################
 # this is the code to rename root files coming out of the Geant4 simulation
 # please remember, this will work only if the root files are ordered according to the follwoing momenta list:
 # 0.1, 0.2, 0.5, 0.8, 1.0, 1.2, 1.5, 1.8, 2.0, 2.2, 2.5, 3.0, 3.5, 5.0, 6.0, 8.0, 10.0, 12.0, 15.0, 18.0, 21.0, 25.0, 30.0, 35.0, 40.0, 50.0, 60.0, 70.0, 80.0, 100.0
 # If Geant4 did not produce one or two files because the corresponding momenta are below the Cherenkov threshold, this will still work.
 
+### run: python3 renameRootFiles.py <particleName>
+### example: python3 renameRootFiles.py proton
+
+###########################################################################################
 
 
 ### importing python libraries
@@ -18,8 +23,8 @@ import time
 
 momentumDictionary = {"0":"0.1", # because output0.root corresponds to 0.1 GeV momentum
                       "1":"0.2", # because output1.root corresponds to 0.2 GeV momentum
-                      "2":"0.5",
-                      "3":"0.8",
+                      "2":"0.5", # because output2.root corresponds to 0.5 GeV momentum
+                      "3":"0.8", # because output3.root corresponds to 0.8 GeV momentum
                       "4":"1.0",
                       "5":"1.2",
                       "6":"1.5",
@@ -50,8 +55,9 @@ momentumDictionary = {"0":"0.1", # because output0.root corresponds to 0.1 GeV m
 
 ### the main function
 def main():
-    ### we assume this file is kept inside `MyProject/ProjectGeant4` directory:
-    FileLocation = "build/"
+    ### we assume this file is kept inside `MyProject/ProjectGeant4/AnalyzerScripts` directory
+    ### we also assume the root files are kept inside the 'MyProject/ProjectGeant4/build'
+    FileLocation = "../build/"
     ### get all the root files from `build`
     inFileList = glob.glob(FileLocation+"*root")
 
