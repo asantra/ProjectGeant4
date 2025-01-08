@@ -379,15 +379,15 @@ Remember, here `r` will come out in the unit of detector box size (which is `0.5
 17. Then go to the directory `AnalyzerScripts` using a combination of `cd` and `cd ..`.
 18. The python script requires `numpy`, `matplotlib`, `scipy` and `uproot` packages. They should be installed in the system. One can install them on `Ubuntu` using `sudo apt-get install <packageName>` command.
 
-19. Now back to `CircleFitOneMomenta.py` code. Run the code like this:
+19. Now back to `CircleFitOneMomentum.py` code. Run the code like this:
 ```
-python3 CircleFitOneMomenta.py <absolute path of the root file you prepared>
+python3 CircleFitOneMomentum.py <absolute path of the root file you prepared>
 ```
 
 For example, if you want to see the radius of `output_proton_12p0GeV.root` having absolute path `/myHome/myLocation/output_proton_12p0GeV.root`, then the command will be:
 
 ```
-python3 CircleFitOneMomenta.py /myHome/myLocation/output_proton_12p0GeV.root
+python3 CircleFitOneMomentum.py /myHome/myLocation/output_proton_12p0GeV.root
 ```
 
 You should see a fit like this on your screen:
@@ -402,7 +402,16 @@ This is because the momenta and particle type was not suitable for creating Cher
 
 21. Now we know `r` and `d`: so we find $`\theta_c`$ easily.
 
-22. One can use different particle type and different particle momenta to plot the Cherenkov angle as a function of particle momenta.
+22. One can use different particle type and different particle momenta to plot the Cherenkov angle as a function of particle momenta. For this purpose, one can use `CircleFitManyMomenta.py`. 
+23. Here, make sure the `momentumDictionary` is written exactly the same as in `renameRootFiles.py`. Then put the particles that you want to make your plots for in `particleList`. At present, these are the particles we will use: 
+```
+particleList = ["electron", "proton", "pion"]
+```
+
+To draw each particle in one sepcific colour and pattern, the `colorDict` should be used. 
+Remember, **each element in particleList above should have one entry in the colorDict.**
+
+
 
 
 
