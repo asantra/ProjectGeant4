@@ -19,40 +19,47 @@ import time
 
 ### this is the dictionary that maps root file names with the corresponding momenta values
 ### if you change the momenta values in your original simulation, you have to change the following map accordingly.
-### for example, if the 1.5 GeV momentum is missing from your simulation, you need to remove the line "6":"1.5"  - instead use "6":"1.8", "7":"2.0" and so on.
-
-momentumDictionary = {"0":"0.1", # because output0.root corresponds to 0.1 GeV momentum
-                      "1":"0.2", # because output1.root corresponds to 0.2 GeV momentum
-                      "2":"0.5", # because output2.root corresponds to 0.5 GeV momentum
-                      "3":"0.8", # because output3.root corresponds to 0.8 GeV momentum
-                      "4":"1.0",
-                      "5":"1.2",
-                      "6":"1.5",
-                      "7":"1.8",
-                      "8":"2.0",
-                      "9":"2.2",
-                      "10":"2.5",
-                      "11":"3.0",
-                      "12":"3.5",
-                      "13":"5.0",
-                      "14":"6.0",
-                      "15":"8.0",
-                      "16":"10.0",
-                      "17":"12.0",
-                      "18":"15.0",
-                      "19":"18.0",
-                      "20":"21.0",
-                      "21":"25.0",
-                      "22":"30.0",
-                      "23":"35.0",
-                      "24":"40.0",
-                      '25':"50.0",
-                      "26":"60.0",
-                      "27":"70.0",
-                      "28":"80.0",
-                      "29":"100.0"
+### for example, if the 1.5 GeV momentum is missing from your simulation, you need to remove the line "11":"1.5"  - instead use "11":"1.8", "12":"2.1" and so on.
+momentumDictionary = {"0":"0.0001", # because output0.root corresponds to 0.0001 GeV momentum
+                      "1":"0.0005", # because output1.root corresponds to 0.0005 GeV momentum
+                      "2":"0.001", # because output2.root corresponds to 0.001 GeV momentum
+                      "3":"0.005", # because output3.root corresponds to 0.005 GeV momentum
+                      "4":"0.01", # because output0.root corresponds to 0.01 GeV momentum
+                      "5":"0.05", # because output1.root corresponds to 0.05 GeV momentum
+                      "6":"0.1", # because output2.root corresponds to 0.1 GeV momentum
+                      "7":"0.2", # because output3.root corresponds to 0.2 GeV momentum
+                      "8":"0.3",
+                      "9":"0.4",
+                      "10":"0.5",
+                      "11":"0.7",
+                      "12":"0.9",
+                      "13":"1.1",
+                      "14":"1.3",
+                      "15":"1.5",
+                      "16":"1.8",
+                      "17":"2.1",
+                      "18":"2.4",
+                      "19":"2.7",
+                      "20":"3.0",
+                      "21":"3.3",
+                      "22":"3.6",
+                      "23":"4.0",
+                      "24":"4.4",
+                      "25":"4.8",
+                      "26":"5.2",
+                      "27":"5.6",
+                      "28":"6.0",
+                      "29":"7.0",
+                      "30":"8.0",
+                      "31":"9.0",
+                      "32":"10.0",
+                      "33":"12.0",
+                      "34":"15.0",
+                      "35":"20.0",
                       }
 
+
+                      
 ### the main function
 def main():
     ### we assume this file is kept inside `MyProject/ProjectGeant4/AnalyzerScripts` directory
@@ -63,13 +70,13 @@ def main():
 
     ### please input the particle type
     particleName = sys.argv[1]
-
+    outDir = "../"+particleName
     ### create the folder if it does not exist
     try:
-        os.makedirs(particleName) 
-        print("Folder '% s' created" % particleName)
+        os.makedirs(outDir) 
+        print("Folder '% s' created" % outDir)
     except:
-        print("The folder ", particleName, " already exists")
+        print("The folder ", outDir, " already exists")
 
     ### Now rename the root files and save them inside the directory
     for filename in inFileList:
@@ -86,8 +93,8 @@ def main():
         ### first rename the root files
         os.system('mv '+filename+" "+newFileName)
         ### then move them inside the folder
-        os.system("mv "+newFileName+" "+particleName)
-        print("The file ", filename, " is renamed to ", newFileName, " and kept inside ", particleName, " folder")
+        os.system("mv "+newFileName+" "+outDir)
+        print("The file ", filename, " is renamed to ", newFileName, " and kept inside ", outDir, " folder")
 
 
 if __name__=="__main__":

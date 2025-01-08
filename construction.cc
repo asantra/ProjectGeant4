@@ -44,7 +44,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct(){
 
      worldMat->SetMaterialPropertiesTable(mptWorld);
 
-     G4Box *solidWorld = new G4Box("solidWorld", 0.5*m,0.5*m,0.5*m); // standard length unit is mm
+     G4Box *solidWorld = new G4Box("solidWorld", 0.5*m,0.5*m,1.0*m); // standard length unit is mm
 
      G4LogicalVolume *logicWorld = new G4LogicalVolume(solidWorld, worldMat, "logicWorld");
 
@@ -57,13 +57,13 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct(){
      G4VPhysicalVolume *physRadiator = new G4PVPlacement(0, G4ThreeVector(0.,0.,0.25*m), logicRadiator, "physRadiator", logicWorld, false, 0, true);
 
 
-     G4Box *solidDetector = new G4Box("solidDetector", 0.005*m, 0.005*m, 0.01*m);
+     G4Box *solidDetector = new G4Box("solidDetector", 0.0025*m, 0.0025*m, 0.01*m);
 
      logicDetector = new G4LogicalVolume(solidDetector, worldMat, "logicDetector");
 
-     for(G4int i=0; i < 100; i++){
-          for(G4int j=0; j < 100; j++){
-               G4VPhysicalVolume *physDetector = new G4PVPlacement(0, G4ThreeVector(-0.5*m+(i+0.5)*m/100,-0.5*m+(j+0.5)*m/100, 0.49*m), logicDetector, "physDetector", logicWorld, false, j+i*100, true);
+     for(G4int i=0; i < 200; i++){
+          for(G4int j=0; j < 200; j++){
+               G4VPhysicalVolume *physDetector = new G4PVPlacement(0, G4ThreeVector(-0.5*m+(i+0.5)*m/200,-0.5*m+(j+0.5)*m/200, 0.99*m), logicDetector, "physDetector", logicWorld, false, j+i*200, true);
           }
      }
 

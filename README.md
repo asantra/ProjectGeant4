@@ -10,6 +10,7 @@ The code setup is based exactly on this video series (upto Tutorial 9).
 
 # Useful commands for a Linux Terminal
 This section highlights a few useful linux commands that may be used during this simulation project. Ignore it if you are well-versed with the terminal usage.
+Here folder and directory will be used interchangeably, they are the same thing.
 1. Open a terminal window: if you are on Ubuntu, look for `terminal` app on the Ubuntu left side panel. Then click on it - this will open the terminal window which will be your main work area (don't forget to hit the `enter` button after typing out each command).
 
 2. Go inside a directory: suppose you want to go inside the directory `Temp`. Then you have to do
@@ -149,6 +150,10 @@ cmake --build . -j6
 # Change the particles and its parameters. 
 1. Emission of Cherenkov light depends on the particle velocity. The cone angle of Cherenkov light emission also depends on particle velocity.
 2. There is a threshold velocity after which Cherenkov light is emitted: if the particle does not cross that threshold, then there is no Cherenkov light. The threshold depends on particle type and the Cherenkov medium. In this project, we are using _Silica gel as the Cherenkov medium_.
+
+**Suppose you run for a momentum of `0.0001 GeV` for one particle, but the Geant4 does not produce any output root file. That means the Cherenkov threshold for that particle is more than `0.0001 GeV`.**
+You can use this fact to find the Cherenkov threshold of one particular particle.
+
 3. If we use different particle type and particle energy, then the detected Cherenkov light should be different too. This is why many particle physics experiments use the Cherenkov detectors to identify the particle. 
 4. To change the momentum of the particle, please go inside the `run.mac` file in the top level directory of the repository (in this example: `ProjectGeant4`).
 5. You will see lines:
@@ -259,11 +264,14 @@ These skills will be necessary to carry out this simulation exercise.
 
 ## run for different particle momentum
 
-1. First we will run for `proton` particles with `30` different momenta (units in `GeV`) and for `500` events each: 
+1. First we will run for `proton` particles with `36` different momenta (units in `GeV`) and for `200` events each: 
 
-> 0.1, 0.2, 0.5, 0.8, 1.0, 1.2, 1.5, 1.8, 2.0, 2.2, 2.5, 3.0, 3.5, 5.0, 6.0, 8.0, 10.0, 12.0, 15.0, 18.0, 21.0, 25.0, 30.0, 35.0, 40.0, 50.0, 60.0, 70.0, 80.0, 100.0.  
+> 0.0001, 0.0005, 0.001, 0.005, 0.05, 0.01, 0.1, 0.2, 0.5, 0.8, 1.0, 1.2, 1.5, 1.8, 2.0, 2.2, 2.5, 3.0, 3.5, 5.0, 6.0, 8.0, 10.0, 12.0, 15.0, 18.0, 21.0, 25.0, 30.0, 35.0, 40.0, 50.0, 60.0, 70.0, 80.0, 100.0.  
 
-If you are using these momenta, then `output0.root` will correspond to `0.1 GeV`, `output1.root` will correspond to `0.2 GeV` and so on.
+If you are using these momenta, then `output0.root` will correspond to `0.0001 GeV`, `output1.root` will correspond to `0.0005 GeV` and so on.
+
+**If you don't see `output0.root` but only from `output1.root`, that means `0.0001 GeV` is below the Cherenkov threshold of that particular particle.**
+
 2. You can append the `run.mac` file with the new momenta values. There is a file with all the above momenta added: `run_moremomenta.mac` - you can simply run that file:
 ```
 ./sim run_moremomenta.mac
@@ -285,6 +293,7 @@ If time permits, you can use these particles as well:
 
 
 # Analysis of the root files
+
 1. Once all the simulations are done (for all particles, all momenta, and renaming root files accordingly), we are ready for the analysis. 
 2. We want to plot the Cherenkov angle $`\theta_c`$ as a function of the particle momenta (see the HEAR-B plot above).
 3. Now let's look at the simulation display again. The primary particle is shown in blue and the Cherenkov light is shown in green. The Cherenkov light creates a cone. 
@@ -298,13 +307,13 @@ If time permits, you can use these particles as well:
 \theta_c = \tan^{-1}\frac{r}{d}
 ```
 
-6. Now we know `d`, as this is in our simulation setup. For our simulation, `d` is 24 cm.
+6. Now we know `d`, as this is in our simulation setup. For our simulation, `d` is 49 cm or 490 mm.
 7. We are now left with finding the value of `r`. This is the time we will analyze the root files.
 8. Now let's go inside one of the root files. Assuming you are in the `build` directory, and you want to go to the `proton` directory:
 ```
 cd ../proton
 ```
-9. Now do an `ls` to see all the files that are kept there:
+9. Now do an `ls` inside the `proton` directory to see all the files that are kept there:
 ```
 output_proton_0p2GeV.root
 output_proton_0p5GeV.root
@@ -345,13 +354,13 @@ root -l --web=off output_proton_12p0GeV.root
 Hits->Draw("fY:fX","fZ>0","COLZ")
 ```
 
-This will take you inside the `root` prompt (not the ordinary terminal). 
+[This will take you inside the `root` prompt (not the ordinary terminal). 
 If you want to go out of the `root` prompt, please type:
 ```
 .q
 ```
 and hit enter.
-Then you will go out of the `root` prompt, and come back to your ordinary terminal window.
+Then you will go out of the `root` prompt, and come back to your ordinary terminal window.]
 
 11. You should see a dialogue box like the following:
 ![screenshot](SampleImages/RootTBrowser.png)
@@ -359,11 +368,46 @@ Then you will go out of the `root` prompt, and come back to your ordinary termin
 12. This is a two dimensional plot showing the hits on the detector surface. The `x` axis shows the `x` direction and the `y` axis shows the `y` direction. The colors signify the number of hits in each of the detector box. 
 13. At first look, you may think the Cherenkov circle is lost on the detector surface: but look carefully on the color axis. 
 The yellow region has more than 14000 hits, where as the blue region is around 1000 hits (less than 7% of the highest hits). 
-Hence the signal will be considered from the yellow region, and the bliue region will be considered as a noise. 
+Hence the signal will be considered from the yellow region, and the blue region will be considered as a noise. 
 The yellow hits are in a circle.
 14. The next part is to fit a circle on the yellow hits to get the Cherenkov radius `r`.
 ![screenshot](SampleImages/RootCircle.png)
 Remember, here `r` will come out in the unit of detector box size (which is `0.5 cm X 0.5 cm` in the `x-y` plane).
+
+15. We need to fit the circle to know the radius. This fitting can be done using `CircleFitOneMomenta.py` code from `AnalyzerScripts` directory. We will learn how to use this code. 
+16. First, come out of the `root` prompt using `.q` in the terminal. 
+17. Then go to the directory `AnalyzerScripts` using a combination of `cd` and `cd ..`.
+18. The python script requires `numpy`, `matplotlib`, `scipy` and `uproot` packages. They should be installed in the system. One can install them on `Ubuntu` using `sudo apt-get install <packageName>` command.
+
+19. Now back to `CircleFitOneMomenta.py` code. Run the code like this:
+```
+python3 CircleFitOneMomenta.py <absolute path of the root file you prepared>
+```
+
+For example, if you want to see the radius of `output_proton_12p0GeV.root` having absolute path `/myHome/myLocation/output_proton_12p0GeV.root`, then the command will be:
+
+```
+python3 CircleFitOneMomenta.py /myHome/myLocation/output_proton_12p0GeV.root
+```
+
+You should see a fit like this on your screen:
+![screenshot](SampleImages/circlefit.png)
+
+
+On your terminal, you will see the fitted radius. 
+(Some of the root files have very pathetic circles, you will see while you fit them. 
+This is because the momenta and particle type was not suitable for creating Cherenkov lights from the Cherenkov medium that we considered. If the fit is very bad, then remove that particle type and that momentum from your future analysis).
+
+20. From the radius in unit detector size, get the radius in `cm` by multiplying fitted radius (`r`) value with `0.5 cm`.
+
+21. Now we know `r` and `d`: so we find $`\theta_c`$ easily.
+
+22. One can use different particle type and different particle momenta to plot the Cherenkov angle as a function of particle momenta.
+
+
+
+
+
 
 # Removing the entire repository after the simulation and analysis
 1. After **finishing** all of your simulation and analyses, you should delete the `MyProject` directory. But remember, once deleted, you will not be able to retrieve your files inside the `MyProject` directory. So delete this only if all of your works (simulation+analysis+plotting) are done. 
