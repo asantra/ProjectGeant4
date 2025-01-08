@@ -235,7 +235,7 @@ mv output_electron_*root ../electron
 
 **You can use `renameRootFiles.py` code to automatically rename your root files and store them away from the `build` directory.**
 The code is located inside `ProjectGeant4/AnalyzerScripts`.
-Run the code from thtat location.
+Run the code from that location.
 Assuming you are inside the `build` directory and you are running on `proton`, please use:
 ```
 cd ../AnalyzerScripts
@@ -380,7 +380,7 @@ Remember, here `r` will come out in the unit of detector box size (which is `0.5
 15. We need to fit the circle to know the radius. This fitting can be done using `CircleFitOneMomenta.py` code from `AnalyzerScripts` directory. We will learn how to use this code. 
 16. First, come out of the `root` prompt using `.q` in the terminal. 
 17. Then go to the directory `AnalyzerScripts` using a combination of `cd` and `cd ..`.
-18. The python script requires `numpy`, `matplotlib`, `scipy` and `uproot` packages. They should be installed in the system. One can install them on `Ubuntu` using `sudo apt-get install <packageName>` command.
+18. The python script requires `numpy`, `matplotlib`, `scipy` and `uproot` packages. They should be installed in the system. One can install them on `Ubuntu` using `sudo apt-get install <packageName>` command. For example, to install `numpy`, one should type `sudo apt-get install numpy` on the terminal and then hit enter (works only on `Ubuntu`, not on `Fedora` or `Mac`).
 
 19. Now back to `CircleFitOneMomentum.py` code. Run the code like this:
 ```
