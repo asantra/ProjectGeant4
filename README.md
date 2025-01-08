@@ -177,8 +177,11 @@ cmake ..
 ./sim run.mac
 ```
 (rememeber, everytime you change anything to your `run.mac`, you need to run the above commands)
+
 11. After the run, you should be able to find the output root files.
+
 12. Changing the particle type is a little bit involved. Please go to the top level directory of the repository (in this example `ProjectGeant4`). If you are in the `build` directory then use `cd ..` to reach to the `ProjectGeant4`.
+
 13. Go to the file `generator.cc` and look for this line:
 ```
 G4String particleName = "proton";
